@@ -10,7 +10,7 @@ export function OutputPanel() {
         : 'bg-white/60 backdrop-blur-xl border border-gray-200/50'
     }`}>
       {/* Header */}
-      <div className={`flex items-center justify-between px-4 py-3 border-b ${
+      <div className={`flex items-center justify-between px-3 md:px-4 py-2 md:py-3 border-b ${
         theme === 'dark' ? 'border-white/10' : 'border-gray-200/50'
       }`}>
         <div className="flex items-center gap-2">
@@ -19,13 +19,13 @@ export function OutputPanel() {
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-green-500/80" />
           </div>
-          <span className={`text-sm font-medium ml-2 ${
+          <span className={`text-sm font-medium ml-1 md:ml-2 ${
             theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
           }`}>
             Output
           </span>
           {isExecuting && (
-            <div className="flex items-center gap-2 ml-2">
+            <div className="flex items-center gap-2 ml-1 md:ml-2">
               <div className="w-2 h-2 bg-violet-500 rounded-full animate-pulse" />
               <span className="text-xs text-violet-400">Running...</span>
             </div>
@@ -33,7 +33,7 @@ export function OutputPanel() {
         </div>
         <button
           onClick={clearOutput}
-          className={`text-xs px-3 py-1 rounded-lg transition-all ${
+          className={`text-xs px-3 py-1.5 md:py-1 rounded-lg transition-all touch-manipulation ${
             theme === 'dark'
               ? 'text-gray-400 hover:text-white hover:bg-white/10'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'

@@ -43,7 +43,7 @@ export function Header() {
             </div>
 
             {/* Center - Sync Status */}
-            <div className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm ${
+            <div className={`hidden lg:flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm ${
               theme === 'dark'
                 ? 'bg-white/5 border border-white/10'
                 : 'bg-gray-900/5 border border-gray-200/50'

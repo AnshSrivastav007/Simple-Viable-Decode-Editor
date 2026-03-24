@@ -1,8 +1,19 @@
+import { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import { useStore } from '../store/useStore';
 
 export function CodeEditor() {
   const { code, setCode, selectedLanguage, theme } = useStore();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <div className="h-full w-full overflow-hidden rounded-xl">
@@ -14,10 +25,10 @@ export function CodeEditor() {
         theme={theme === 'dark' ? 'vs-dark' : 'light'}
         options={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 14,
-          lineHeight: 24,
-          padding: { top: 16, bottom: 16 },
-          minimap: { enabled: true, scale: 1 },
+          fontSize: isMobile ? 13 : 14,
+          lineHeight: isMobile ? 20 : 24,
+          padding: { top: 12, bottom: 12 },
+          minimap: { enabled: !isMobile, scale: 1 },
           scrollBeyondLastLine: false,
           smoothScrolling: true,
           cursorBlinking: 'smooth',
@@ -31,12 +42,21 @@ export function CodeEditor() {
           formatOnType: true,
           suggestOnTriggerCharacters: true,
           acceptSuggestionOnEnter: 'on',
-          folding: true,
+          folding: !isMobile,
           foldingStrategy: 'indentation',
-          showFoldingControls: 'mouseover',
+          showFoldingControls: isMobile ? 'never' : 'mouseover',
           links: true,
           colorDecorators: true,
           accessibilitySupport: 'auto',
+          quickSuggestions: !isMobile,
+          parameterHints: { enabled: !isMobile },
+          hover: { enabled: !isMobile },
+          scrollbar: {
+            vertical: 'auto',
+            horizontal: isMobile ? 'hidden' : 'auto',
+            verticalScrollbarSize: 8,
+            horizontalScrollbarSize: 8,
+          },
         }}
         loading={
           <div className={`h-full w-full flex items-center justify-center ${

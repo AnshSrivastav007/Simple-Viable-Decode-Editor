@@ -150,19 +150,20 @@ function App() {
       </div>
 
       {/* Main Layout */}
-      <div className="relative z-10 flex flex-col h-screen">
+      <div className="relative z-10 flex flex-col h-[100dvh]">
         <Header />
 
         <main className="flex-1 overflow-hidden">
-          <div className="h-full max-w-[1920px] mx-auto p-4 flex gap-4">
+          <div className="h-full max-w-[1920px] mx-auto p-2 md:p-4 flex gap-2 md:gap-4">
             {/* Mobile Toggle */}
             <button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className={`lg:hidden fixed bottom-4 left-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${
+              className={`lg:hidden fixed bottom-4 left-4 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg touch-manipulation ${
                 theme === 'dark'
                   ? 'bg-violet-500 text-white'
                   : 'bg-violet-500 text-white'
               }`}
+              aria-label={sidebarCollapsed ? "Open menu" : "Close menu"}
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={sidebarCollapsed ? "M4 6h16M4 12h16M4 18h16" : "M6 18L18 6M6 6l12 12"} />
@@ -173,7 +174,7 @@ function App() {
             <div className={`${
               sidebarCollapsed ? 'hidden' : 'fixed inset-0 z-40 lg:relative lg:inset-auto'
             } lg:block lg:w-72 flex-shrink-0`}>
-              <div className="h-full lg:h-auto p-4 lg:p-0" onClick={(e) => e.target === e.currentTarget && setSidebarCollapsed(true)}>
+              <div className="h-full lg:h-auto p-2 lg:p-0" onClick={(e) => e.target === e.currentTarget && setSidebarCollapsed(true)}>
                 <div className="h-full max-w-sm mx-auto lg:max-w-none">
                   <Sidebar 
                     onRun={handleRunCode}
@@ -184,14 +185,14 @@ function App() {
             </div>
 
             {/* Editor & Output */}
-            <div className="flex-1 flex flex-col lg:flex-row gap-4 min-w-0">
+            <div className="flex-1 flex flex-col lg:flex-row gap-2 md:gap-4 min-w-0">
               {/* Code Editor */}
-              <div className="flex-1 min-h-[300px] lg:min-h-0">
+              <div className="flex-1 min-h-[250px] sm:min-h-[300px] lg:min-h-0">
                 <EditorPanel />
               </div>
 
               {/* Output Panel */}
-              <div className="h-48 lg:h-auto lg:w-96 flex-shrink-0">
+              <div className="h-40 sm:h-48 lg:h-auto lg:w-96 flex-shrink-0">
                 <OutputPanel />
               </div>
             </div>

@@ -50,10 +50,10 @@ export function Sidebar({ onRun, onShare }: SidebarProps) {
           <button
             onClick={onRun}
             disabled={isExecuting}
-            className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all ${
+            className={`w-full flex items-center justify-center gap-2 py-3.5 md:py-3 rounded-xl font-medium transition-all touch-manipulation min-h-[48px] ${
               isExecuting
                 ? 'bg-violet-500/50 cursor-not-allowed'
-                : 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 shadow-lg shadow-violet-500/30'
+                : 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 shadow-lg shadow-violet-500/30 active:scale-[0.98]'
             } text-white`}
           >
             {isExecuting ? (
@@ -63,29 +63,29 @@ export function Sidebar({ onRun, onShare }: SidebarProps) {
               </>
             ) : (
               <>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Run Code
-                <kbd className="hidden sm:inline text-[10px] px-1.5 py-0.5 rounded bg-white/20 ml-1">⌘↵</kbd>
+                <span className="whitespace-nowrap">Run Code</span>
+                <kbd className="hidden md:inline text-[10px] px-1.5 py-0.5 rounded bg-white/20 ml-1">⌘↵</kbd>
               </>
             )}
           </button>
 
           <button
             onClick={onShare}
-            className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all ${
+            className={`w-full flex items-center justify-center gap-2 py-3.5 md:py-3 rounded-xl font-medium transition-all touch-manipulation min-h-[48px] ${
               theme === 'dark'
-                ? 'bg-white/10 hover:bg-white/15 text-white border border-white/10'
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-200'
+                ? 'bg-white/10 hover:bg-white/15 text-white border border-white/10 active:bg-white/20'
+                : 'bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-200 active:bg-gray-300'
             }`}
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
             </svg>
-            Share Code
-            <kbd className="hidden sm:inline text-[10px] px-1.5 py-0.5 rounded bg-gray-500/20 ml-1">⌘S</kbd>
+            <span className="whitespace-nowrap">Share Code</span>
+            <kbd className="hidden md:inline text-[10px] px-1.5 py-0.5 rounded bg-gray-500/20 ml-1">⌘S</kbd>
           </button>
         </div>
 
@@ -93,7 +93,7 @@ export function Sidebar({ onRun, onShare }: SidebarProps) {
         <div className="pt-4">
           <button
             onClick={() => setShowSnippets(!showSnippets)}
-            className={`w-full flex items-center justify-between py-2 ${
+            className={`w-full flex items-center justify-between py-2 touch-manipulation ${
               theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
             }`}
           >
@@ -109,7 +109,7 @@ export function Sidebar({ onRun, onShare }: SidebarProps) {
           </button>
 
           {showSnippets && (
-            <div className="mt-2 space-y-2">
+            <div className="mt-2 space-y-2 max-h-40 md:max-h-none overflow-y-auto">
               {snippets.length === 0 ? (
                 <p className={`text-xs text-center py-4 ${
                   theme === 'dark' ? 'text-gray-500' : 'text-gray-400'
@@ -123,7 +123,7 @@ export function Sidebar({ onRun, onShare }: SidebarProps) {
                     <button
                       key={snippet.id}
                       onClick={() => loadSnippet(snippet.id)}
-                      className={`w-full text-left p-3 rounded-lg transition-all ${
+                      className={`w-full text-left p-3 md:p-2 rounded-lg transition-all touch-manipulation ${
                         currentSnippetId === snippet.id
                           ? theme === 'dark'
                             ? 'bg-violet-500/20 border border-violet-500/30'

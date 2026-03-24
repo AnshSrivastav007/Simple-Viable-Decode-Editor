@@ -77,7 +77,7 @@ export function LanguageSelector() {
             </div>
 
             {/* Language List */}
-            <div className="max-h-64 overflow-y-auto p-2">
+            <div className="max-h-[50vh] md:max-h-64 overflow-y-auto p-2">
               {filteredLanguages.length === 0 ? (
                 <p className={`text-center py-4 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
                   No languages found
@@ -88,7 +88,7 @@ export function LanguageSelector() {
                     <button
                       key={lang.id}
                       onClick={() => handleSelect(lang)}
-                      className={`flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all ${
+                      className={`flex items-center gap-3 px-3 py-3 md:py-2 rounded-lg text-left transition-all touch-manipulation ${
                         selectedLanguage?.id === lang.id
                           ? theme === 'dark'
                             ? 'bg-violet-500/20 text-violet-300'
@@ -99,8 +99,8 @@ export function LanguageSelector() {
                       }`}
                     >
                       <span className="text-lg">{lang.icon}</span>
-                      <span className="font-medium">{lang.name}</span>
-                      <span className={`text-xs ml-auto ${
+                      <span className="font-medium truncate">{lang.name}</span>
+                      <span className={`text-xs ml-auto flex-shrink-0 ${
                         theme === 'dark' ? 'text-gray-500' : 'text-gray-400'
                       }`}>
                         {lang.extension}
