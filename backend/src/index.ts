@@ -35,6 +35,6 @@ app.get("/health", (req, res) => {
 startLanguageSyncJob();
 
 app.listen(PORT, () => {
-  console.log(`🚀 SLC Backend running on port ${PORT}`);
+  console.log(`🚀 SVDE Backend running on port ${PORT}`);
   console.log(`📅 Language sync job active`);
 });
