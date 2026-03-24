@@ -22,6 +22,14 @@ const LANGUAGE_MAP: { [key: number]: { language: string; version: string } } = {
   29: { language: "rust", version: "1.68.2" },
   31: { language: "swift", version: "5.8" },
   8: { language: "php", version: "8.2.0" },
+  44: { language: "bash", version: "5.2.0" },
+  50: { language: "r", version: "4.1.1" },
+  54: { language: "perl", version: "5.36.0" },
+  55: { language: "lua", version: "5.4.4" },
+  56: { language: "haskell", version: "9.4.1" },
+  64: { language: "dart", version: "2.19.6" },
+  71: { language: "scala", version: "3.2.2" },
+  72: { language: "julia", version: "1.8.5" },
 };
 
 interface ExecuteRequest {
@@ -50,6 +58,8 @@ router.post("/", async (req, res) => {
   const startTime = Date.now();
 
   try {
+    console.log(`Executing code for languageId: ${languageId}, config:`, langConfig);
+    
     const response = await axios.post(
       `${PISTON_API}/execute`,
       {
@@ -62,6 +72,8 @@ router.post("/", async (req, res) => {
         headers: { "Content-Type": "application/json" },
       }
     );
+
+    console.log("Piston response:", response.data);
 
     const executionTime = Date.now() - startTime;
     const result = response.data;

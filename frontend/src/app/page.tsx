@@ -57,8 +57,8 @@ export default function Home() {
               SLC
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">Sri Lankan Certificate</h1>
-              <p className="text-xs text-gray-400">Online Code Editor</p>
+              <h1 className="text-xl font-bold text-white">Simple Viable Decode Editor</h1>
+              <p className="text-xs text-gray-400">Online Code Runner</p>
             </div>
           </div>
           
