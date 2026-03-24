@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Language {
+  id        Int      @id @default(autoincrement())
+  judge0Id  Int      @unique
+  name      String
+  icon      String   @default("📄")
+  extension String   @default("txt")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  snippets Snippet[]
+
+  @@index([name])
+  @@index([judge0Id])
+}
+
+model Snippet {
+  id         String   @id @default(cuid())
+  code       String   @db.Text
+  languageId Int
+  language   Language @relation(fields: [languageId], references: [id])
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+
+  @@index([id])
+  @@index([languageId])
+  @@index([expiresAt])
+}
+
+model SyncLog {
+  id        Int      @id @default(autoincrement())
+  added     Int
+  updated   Int
+  total     Int
+  success   Boolean
+  error     String?  @db.Text
+  createdAt DateTime @default(now())
+}
