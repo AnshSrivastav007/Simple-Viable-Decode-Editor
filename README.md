@@ -1,4 +1,4 @@
-# SLC - Sri Lankan Certificate
+# SLC - Simple Viable Decode
 
 Online Code Editor with Auto-Update Programming Languages
 
@@ -104,6 +104,4 @@ railway run npm run sync
 vercel deploy
 ```
 
-## License
 
-MIT
