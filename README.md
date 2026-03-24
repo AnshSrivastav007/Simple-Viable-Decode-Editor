@@ -4,9 +4,9 @@ Online Code Editor with Auto-Update Programming Languages
 
 ## Features
 
-- **Auto Language Updates**: Automatically syncs 60+ programming languages from Judge0 API
+- **Auto Language Updates**: Automatically syncs 60+ programming languages
 - **Daily Sync**: Cron job runs at 3 AM to keep languages updated
-- **Code Execution**: Run code in multiple languages via Judge0 API
+- **Code Execution**: Run code in multiple languages 
 - **Share Snippets**: Share code snippets with unique URLs
 - **Dark/Light Theme**: Toggle between dark and light themes
 - **Monaco Editor**: Full-featured code editor
